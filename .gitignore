@@ -1,0 +1,32 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Reports (generated on each run)
+reports/
+
+# APK binaries (too large for Git — document path in README)
+apps/*.apk
+
+# Environment config (contains local paths)
+.env
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Appium / Allure
+allure-results/
+allure-report/
+
+# Page source dumps (local debugging only)
+dumps/
+*.dump.xml
