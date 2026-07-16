@@ -38,8 +38,8 @@ export interface WalletAmounts {
 // ------------------------------------------------------------------
 
 export const credentials: Credentials = {
-    email: 'praneet@mytravaly.in',
-    password: 'Praneetmt@10',
+    email: process.env.TEST_USER_EMAIL || 'your_test_email@example.com',
+    password: process.env.TEST_USER_PASSWORD || 'your_test_password',
 };
 
 export const guestDetails: GuestDetails = {
