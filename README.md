@@ -134,21 +134,66 @@ The app is built with Flutter, so standard Android resource IDs are limited. We 
 
 ---
 
-## 🤝 Git Workflow (Team Collaboration)
+## 🤝 Git Workflow (Fork-based Collaboration)
+
+**Anshuman** owns the upstream repo. **Nazitora** forks it and contributes via Pull Requests.
+
+### For Anshuman (repo owner)
 
 ```bash
-# Create a feature branch for your module
+# Push the boilerplate to GitHub (one-time setup)
+git remote add origin <your-github-repo-url>
+git push -u origin main
+
+# Work directly on feature branches
 git checkout -b feature/wallet-addfunds
-
-# Make changes, commit frequently with descriptive messages
-git add -A
-git commit -m "feat(wallet): add MTG-WAL-009 zero amount test case"
-
-# Push to remote
+# ... write tests, commit ...
 git push origin feature/wallet-addfunds
+# Merge via GitHub PR (or directly into main for your own module)
+```
 
-# Create a Pull Request on GitHub for review
-# After review, merge into main
+### For Nazitora (contributor via fork)
+
+```bash
+# 1. Fork the repo on GitHub (click "Fork" button)
+# 2. Clone YOUR fork
+git clone https://github.com/nazitora/<repo-name>.git
+cd <repo-name>
+npm install
+
+# 3. Add upstream (Anshuman's repo) as a remote
+git remote add upstream https://github.com/anshuman/<repo-name>.git
+
+# 4. Create a feature branch for your module
+git checkout -b feature/discovery-booking
+
+# 5. Write tests, commit frequently
+git add -A
+git commit -m "feat(discovery): add search results page object"
+
+# 6. Push to YOUR fork
+git push origin feature/discovery-booking
+
+# 7. Open a Pull Request from your fork → upstream/main on GitHub
+
+# 8. Stay in sync with upstream
+git fetch upstream
+git merge upstream/main
+```
+
+### Handling Merge Conflicts
+
+When Nazitora's PR has conflicts with Anshuman's changes (this is expected!):
+
+```bash
+# On Nazitora's fork, pull latest from upstream
+git fetch upstream
+git merge upstream/main
+# Resolve conflicts in your editor, then:
+git add -A
+git commit -m "merge: resolve conflicts with upstream wallet changes"
+git push origin feature/discovery-booking
+# The PR on GitHub will auto-update
 ```
 
 ### Commit Convention
