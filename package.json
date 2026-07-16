@@ -7,6 +7,9 @@
   "scripts": {
     "test": "ANDROID_HOME=$HOME/Library/Android/sdk npx wdio run config/wdio.conf.ts",
     "test:wallet": "ANDROID_HOME=$HOME/Library/Android/sdk npx wdio run config/wdio.conf.ts --spec test/specs/wallet.addfunds.spec.ts",
+    "test:engagement": "ANDROID_HOME=$HOME/Library/Android/sdk npx wdio run config/wdio.conf.ts --spec test/specs/engagement.preferences.spec.ts",
+    "test:content": "ANDROID_HOME=$HOME/Library/Android/sdk npx wdio run config/wdio.conf.ts --spec test/specs/content.other.spec.ts",
+    "test:nazitora": "ANDROID_HOME=$HOME/Library/Android/sdk npx wdio run config/wdio.conf.ts --spec test/specs/engagement.preferences.spec.ts --spec test/specs/content.other.spec.ts",
     "test:onboarding": "ANDROID_HOME=$HOME/Library/Android/sdk npx wdio run config/wdio.conf.ts --spec test/specs/onboarding.*.spec.ts",
     "typecheck": "tsc --noEmit",
     "dump": "ANDROID_HOME=$HOME/Library/Android/sdk npx ts-node scripts/dump-page-source.ts"

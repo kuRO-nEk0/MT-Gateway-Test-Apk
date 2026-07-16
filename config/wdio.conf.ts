@@ -39,8 +39,8 @@ export const config: WebdriverIO.Config = {
         'appium:noReset': true,
         'appium:fullReset': false,
 
-        // Performance: skip unneeded Appium server initialisation steps
-        'appium:skipServerInstallation': true,
+        // Let Appium install/refresh the UiAutomator2 helper server on fresh emulators.
+        'appium:skipServerInstallation': false,
     }],
 
     // ==================
