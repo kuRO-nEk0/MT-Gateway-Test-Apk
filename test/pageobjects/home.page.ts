@@ -31,7 +31,7 @@ class HomePage extends BasePage {
      * TODO: Capture exact selector from live UI dump. Trying content-desc first.
      */
     get tabWallet() {
-        return $('//android.view.View[@content-desc="Wallet"]');
+        return $('android=new UiSelector().description("Wallet")');
     }
 
     /**
@@ -39,7 +39,7 @@ class HomePage extends BasePage {
      * TODO: Verify selector from live UI dump.
      */
     get tabHome() {
-        return $('//android.view.View[@content-desc="Home"]');
+        return $('android=new UiSelector().description("Home")');
     }
 
     /**
@@ -47,7 +47,7 @@ class HomePage extends BasePage {
      * TODO: Verify selector from live UI dump.
      */
     get tabProfile() {
-        return $('//android.view.View[@content-desc="Profile"]');
+        return $('android=new UiSelector().description("Profile")');
     }
 
     // ------------------------------------------------------------------

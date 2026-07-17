@@ -30,7 +30,7 @@ export async function restartApp(): Promise<void> {
  * Pre-condition for any test that requires an authenticated session.
  */
 export async function ensureLoggedIn(): Promise<void> {
-    const isLoggedIn = await HomePage.isOnHomeScreen();
+    const isLoggedIn = await HomePage.isOnHomeScreen() || await isMainAppShellVisible();
 
     if (!isLoggedIn) {
         console.log('[appActions] Not on home screen — performing login...');
@@ -51,6 +51,31 @@ export async function ensureLoggedIn(): Promise<void> {
 }
 
 /**
+ * Some specs navigate away from Home into authenticated sub-screens. In that
+ * state the Home search bar is absent, but bottom navigation still proves the
+ * user is logged in and the app shell is available.
+ */
+async function isMainAppShellVisible(): Promise<boolean> {
+    const mainShellElements = [
+        $('android=new UiSelector().description("Home")'),
+        $('android=new UiSelector().description("Clients")'),
+        $('android=new UiSelector().description("Profile")'),
+    ];
+
+    for (const element of mainShellElements) {
+        try {
+            if (await element.isDisplayed()) {
+                return true;
+            }
+        } catch {
+            // Element is not present on the current screen.
+        }
+    }
+
+    return false;
+}
+
+/**
  * Navigate to a bottom-navigation tab by name.
  *
  * @param tabName - One of: 'Home', 'Wallet', 'Profile'
@@ -68,7 +93,7 @@ export async function navigateToTab(
         case 'Home':
         default:
             // Tap home tab or just restart to get back to home
-            const homeTab = await $('//android.view.View[@content-desc="Home"]');
+            const homeTab = await $('android=new UiSelector().description("Home")');
             try {
                 await homeTab.waitForDisplayed({ timeout: 5_000 });
                 await homeTab.click();
